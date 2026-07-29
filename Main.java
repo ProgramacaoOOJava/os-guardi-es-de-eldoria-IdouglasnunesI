@@ -1,27 +1,37 @@
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        // Criação do primeiro personagem
-        Personagem personagem1 = new Personagem();
+        // Criação da lista de personagens
+        ArrayList<Personagem> personagens = new ArrayList<>();
 
-        personagem1.nome = "Arthemis";
-        personagem1.classe = "Arqueira";
-        personagem1.nivel = 5;
-        personagem1.pontosDeVida = 80;
-        personagem1.poderBase = 12.5;
+        // Instanciando objetos
+        personagens.add(new Guerreiro(
+                "Arthus",
+                10,
+                150,
+                25.5,
+                "Espada Longa"));
 
-        // Criação do segundo personagem
-        Personagem personagem2 = new Personagem();
+        personagens.add(new Mago(
+                "Elenara",
+                12,
+                90,
+                40.8,
+                "Fogo"));
 
-        personagem2.nome = "Kael";
-        personagem2.classe = "Guerreiro";
-        personagem2.nivel = 8;
-        personagem2.pontosDeVida = 120;
-        personagem2.poderBase = 18.7;
+        // Percorre todos os personagens
+        for (Personagem personagem : personagens) {
 
-        // Exibe as informações dos personagens
-        personagem1.exibirStatus();
-        personagem2.exibirStatus();
+            personagem.exibirStatus();
+
+            personagem.usarHabilidadeEspecial();
+
+            System.out.println("----------------------------------");
+        }
+
     }
+
 }
