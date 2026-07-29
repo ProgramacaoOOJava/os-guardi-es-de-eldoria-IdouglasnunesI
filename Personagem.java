@@ -1,3 +1,4 @@
+// Classe abstrata que representa um personagem do jogo
 public abstract class Personagem {
 
     protected String nome;
@@ -27,3 +28,44 @@ public abstract class Personagem {
     // Método abstrato que será implementado nas subclasses
     public abstract void usarHabilidadeEspecial();
 }
+
+// Classe Guerreiro herda de Personagem
+public class Guerreiro extends Personagem {
+
+    private String arma;
+
+    // Construtor
+    public Guerreiro(String nome, int nivel, int pontosDeVida, double poderBase, String arma) {
+
+        super(nome, "Guerreiro", nivel, pontosDeVida, poderBase);
+        this.arma = arma;
+    }
+
+    // Sobrescrita do método abstrato
+    @Override
+    public void usarHabilidadeEspecial() {
+        System.out.println("Guerreiro " + nome + " ataca com Espada Flamejante usando sua " + arma + "!");
+    }
+}
+
+// Classe Mago herda de Personagem
+public class Mago extends Personagem {
+
+    private String elemento;
+
+    // Construtor
+    public Mago(String nome, int nivel, int pontosDeVida, double poderBase, String elemento) {
+
+        super(nome, "Mago", nivel, pontosDeVida, poderBase);
+        this.elemento = elemento;
+    }
+
+    // Sobrescrita do método abstrato
+    @Override
+    public void usarHabilidadeEspecial() {
+        System.out.println("Mago " + nome + " lança Bola de Fogo utilizando magia de " + elemento + "!");
+    }
+}
+
+
+
