@@ -1,37 +1,55 @@
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        // Criação da lista de personagens
-        ArrayList<Personagem> personagens = new ArrayList<>();
+        Grupo grupo1 = new Grupo();
+        Grupo grupo2 = new Grupo();
 
-        // Instanciando objetos
-        personagens.add(new Guerreiro(
+        Guerreiro guerreiro = new Guerreiro(
                 "Arthus",
                 10,
                 150,
-                25.5,
-                "Espada Longa"));
+                30,
+                "Espada Longa");
 
-        personagens.add(new Mago(
+        Mago mago = new Mago(
                 "Elenara",
                 12,
                 90,
-                40.8,
-                "Fogo"));
+                25,
+                "Fogo");
 
-        // Percorre todos os personagens
-        for (Personagem personagem : personagens) {
+        Guerreiro guerreiro2 = new Guerreiro(
+                "Leon",
+                8,
+                120,
+                20,
+                "Machado");
 
-            personagem.exibirStatus();
+        Mago mago2 = new Mago(
+                "Merlin",
+                15,
+                80,
+                22,
+                "Raio");
 
-            personagem.usarHabilidadeEspecial();
+        grupo1.adicionarPersonagem(guerreiro);
+        grupo1.adicionarPersonagem(mago);
 
-            System.out.println("----------------------------------");
-        }
+        grupo2.adicionarPersonagem(guerreiro2);
+        grupo2.adicionarPersonagem(mago2);
+
+        System.out.println("=== Grupo 1 ===");
+        grupo1.listarPersonagens();
+
+        System.out.println();
+
+        System.out.println("=== Grupo 2 ===");
+        grupo2.listarPersonagens();
+
+        grupo1.batalhar(guerreiro, guerreiro2);
+
+        grupo1.batalhar(mago, mago2);
 
     }
-
 }
