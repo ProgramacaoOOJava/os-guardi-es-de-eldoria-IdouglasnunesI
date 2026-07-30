@@ -1,4 +1,4 @@
-// Classe abstrata que representa um personagem do jogo
+// Classe abstrata que representa um personagem
 public abstract class Personagem {
 
     protected String nome;
@@ -7,8 +7,9 @@ public abstract class Personagem {
     protected int pontosDeVida;
     protected double poderBase;
 
-    // Construtor da superclasse
-    public Personagem(String nome, String classe, int nivel, int pontosDeVida, double poderBase) {
+    public Personagem(String nome, String classe, int nivel,
+                      int pontosDeVida, double poderBase) {
+
         this.nome = nome;
         this.classe = classe;
         this.nivel = nivel;
@@ -25,47 +26,141 @@ public abstract class Personagem {
         System.out.println("Poder Base: " + poderBase);
     }
 
-    // Método abstrato que será implementado nas subclasses
+    // Método abstrato
     public abstract void usarHabilidadeEspecial();
+
+    // Getters
+    public String getNome() {
+        return nome;
+    }
+
+    public String getClasse() {
+        return classe;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public double getPoderBase() {
+        return poderBase;
+    }
 }
 
-// Classe Guerreiro herda de Personagem
 public class Guerreiro extends Personagem {
 
     private String arma;
 
-    // Construtor
-    public Guerreiro(String nome, int nivel, int pontosDeVida, double poderBase, String arma) {
+    public Guerreiro(String nome, int nivel, int pontosDeVida,
+                     double poderBase, String arma) {
 
         super(nome, "Guerreiro", nivel, pontosDeVida, poderBase);
         this.arma = arma;
     }
 
-    // Sobrescrita do método abstrato
     @Override
     public void usarHabilidadeEspecial() {
-        System.out.println("Guerreiro " + nome + " ataca com Espada Flamejante usando sua " + arma + "!");
+        System.out.println("Guerreiro " + nome +
+                " ataca com Espada Flamejante usando " + arma + "!");
     }
 }
 
-// Classe Mago herda de Personagem
 public class Mago extends Personagem {
 
     private String elemento;
 
-    // Construtor
-    public Mago(String nome, int nivel, int pontosDeVida, double poderBase, String elemento) {
+    public Mago(String nome, int nivel, int pontosDeVida,
+                double poderBase, String elemento) {
 
         super(nome, "Mago", nivel, pontosDeVida, poderBase);
         this.elemento = elemento;
     }
 
-    // Sobrescrita do método abstrato
     @Override
     public void usarHabilidadeEspecial() {
-        System.out.println("Mago " + nome + " lança Bola de Fogo utilizando magia de " + elemento + "!");
+        System.out.println("Mago " + nome +
+                " lança Bola de Fogo usando magia de " + elemento + "!");
     }
 }
+import java.util.ArrayList;
+
+// Classe responsável por armazenar os personagens
+public class Grupo {
+
+    private ArrayList<Personagem> membros;
+
+    public Grupo() {
+        membros = new ArrayList<>();
+    }
+
+    // Adiciona personagem ao grupo
+    public void adicionarPersonagem(Personagem p) {
+        membros.add(p);
+    }
+
+    // Lista os personagens
+    public void listarPersonagens() {
+
+        for (Personagem p : membros) {
+            p.exibirStatus();
+            System.out.println("----------------------");
+        }
+    }
+
+    // Método que realiza uma batalha
+    public void batalhar(Personagem a, Personagem b) {
+
+        double poderA = a.getNivel() * a.getPoderBase();
+        double poderB = b.getNivel() * b.getPoderBase();
+
+        System.out.println();
+        System.out.println("===== BATALHA =====");
+        System.out.println(a.getNome() + " -> Poder Total: " + poderA);
+        System.out.println(b.getNome() + " -> Poder Total: " + poderB);
+
+        if (poderA > poderB) {
+
+            System.out.println(a.getClasse() + " "
+                    + a.getNome()
+                    + " venceu! Poder total: "
+                    + poderA);
+
+        } else if (poderB > poderA) {
+
+            System.out.println(b.getClasse() + " "
+                    + b.getNome()
+                    + " venceu! Poder total: "
+                    + poderB);
+
+        } else {
+
+            System.out.println("A batalha terminou empatada!");
+        }
+
+        System.out.println("=====================");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
